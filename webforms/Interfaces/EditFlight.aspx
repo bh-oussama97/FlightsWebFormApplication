@@ -19,7 +19,7 @@
             <label for="seatsEdit">Number of Seats</label>
         </div>
 
-        <asp:Button class="btn btn-primary d-flex align-self-start" ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" />
+        <asp:Button class="btn btn-primary d-flex align-self-start" ID="btnUpdate" runat="server" Text="Update" OnClick="BtnUpdate_Click" />
     </div>
 </asp:Content>
 

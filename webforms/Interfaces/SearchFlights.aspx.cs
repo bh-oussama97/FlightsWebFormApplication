@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
 using webforms.DataLayer;
@@ -11,25 +12,17 @@ namespace webforms.Interfaces
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string search = Request.QueryString["srch"];
-            if (!IsPostBack)
-            {
-                LoadFlights(search);
-            }
-            if (!String.IsNullOrEmpty(search))
-            {
-                LoadFlights(search);
-            }
 
+                LoadFlights("");
         }
+
+
 
         private void LoadFlights(string queryString)
         {
             var context = new DataContext();
-
             var flights = context.Flights.Select(a => new FlightDTO(
-                a.Id,a.Airline,a.Price,a.Departure.Place,a.Arrival.Place,a.RemainingNumberOfSeats)).ToList();
-
+                a.Id, a.Airline, a.Price, a.Departure.Place, a.Arrival.Place, a.RemainingNumberOfSeats)).ToList();
 
             if (!String.IsNullOrEmpty(queryString))
             {
@@ -39,12 +32,23 @@ namespace webforms.Interfaces
 
             gvFlights.DataSource = flights;
             gvFlights.DataBind();
+
+            // Check if GridView has no data and display the "No data found" message
+            if (flights.Count == 0)
+            {
+                noDataMessage.Visible = true;
+            }
+            else
+            {
+                noDataMessage.Visible = false;
+            }
         }
+
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            var searchText = Server.UrlEncode(txtSearchMaster.Text);
-            Response.Redirect("~/Interfaces/SearchFlights.aspx?srch=" + searchText);
+            string searchText = txtSearchMaster.Text;
+            LoadFlights(searchText);
         }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
@@ -52,16 +56,18 @@ namespace webforms.Interfaces
         }
         protected void gvFlights_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "EditFlight")
+            int flightId;
+            if (int.TryParse(e.CommandArgument.ToString(), out flightId)) // Ensure valid flight ID
             {
-                int flightId = Convert.ToInt32(e.CommandArgument);
-                Response.Redirect($"EditFlight.aspx?id={flightId}");
-            }
-            else if (e.CommandName == "DeleteFlight")
-            {
-                int flightId = Convert.ToInt32(e.CommandArgument);
-                DeleteFlightById(flightId);
-                LoadFlights("");
+                if (e.CommandName == "EditFlight")
+                {
+                    Response.Redirect($"EditFlight.aspx?id={flightId}");
+                }
+                else if (e.CommandName == "DeleteFlight")
+                {
+                    DeleteFlightById(flightId);
+                    LoadFlights(""); // Reload flight list after deletion
+                }
             }
         }
 

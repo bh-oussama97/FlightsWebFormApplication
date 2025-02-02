@@ -1,16 +1,14 @@
 ﻿<%@ Page Title="Flights" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SearchFlights.aspx.cs" Inherits="webforms.Interfaces.SearchFlights" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-            
-    <div class="d-flex justify-content-between mb-3">
+                    <div class="d-flex justify-content-between mb-3">
             <div id="search" class="d-flex gap-2 ">
-         <asp:TextBox class="form-control"  ID="txtSearchMaster" runat="server"></asp:TextBox>
+<asp:TextBox CssClass="form-control" ID="txtSearchMaster" runat="server" placeholder="Search by airline"></asp:TextBox>
          <asp:Button  class="btn btn-dark" ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click"  />
+
      </div>
     <asp:Button  class="btn btn-primary" ID="btnAdd" runat="server" Text="New Flight" OnClick="btnAdd_Click"  />
     </div>
-
-
     <main aria-labelledby="title">
 <asp:GridView ID="gvFlights" runat="server" AutoGenerateColumns="False" CssClass="table" OnRowCommand="gvFlights_RowCommand">
     <Columns>
@@ -35,8 +33,8 @@
     </Columns>
 </asp:GridView>
 
+<div id="noDataMessage" runat="server" class="text-center text-danger fw-bold">
+    No data found
+</div>
 
-
-
-    </main>
 </asp:Content>

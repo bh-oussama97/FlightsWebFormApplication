@@ -22,39 +22,65 @@ namespace webforms.Interfaces
                 {
                     if (Id > 0)
                     {
-                        getCountryById(Id);
+                        GetCountryById(Id);
                     }
                 }
             }
         }
-        protected void getCountryById(int countryId)
-        {
-            var context = new DataContext();
-            var countryById = context.Timeplaces.Find(countryId);
-            if (countryById != null)
-            {
-                hfCountryId.Value = countryId.ToString();
-                txtName.Text = countryById.Place.ToString();
-            }
-        }
-        protected void btnUpdate_Click(object sender, EventArgs e)
-        {
-            int Id;
-            DataContext context = new DataContext();
-            bool result = int.TryParse(hfCountryId.Value, out Id);
 
-                if (result)
+        protected void GetCountryById(int countryId)
+        {
+            using (var context = new DataContext()) 
             {
-                var countryById = context.Timeplaces.Find(Id);
+                var countryById = context.Timeplaces.Find(countryId);
                 if (countryById != null)
                 {
-                    countryById.Place = txtName.Text;
-                    context.Entry(countryById).State = EntityState.Modified;
-                    context.SaveChanges();
+                    // Store the country ID in a hidden field for later use
+                    hfCountryId.Value = countryId.ToString();
 
-                    Response.Redirect("~/Interfaces/Timeplaces.aspx");
+                    // Populate the text field with the country's name
+                    txtName.Text = countryById.Place;
                 }
-            }           
+            }
         }
+
+
+        protected void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            using (var context = new DataContext())
+            {
+                // Attempt to parse the country ID from the hidden field
+                if (int.TryParse(hfCountryId.Value, out int id))
+                {
+                    var countryById = context.Timeplaces.Find(id);
+                    if (countryById != null)
+                    {
+                        // Update the country's name
+                        countryById.Place = txtName.Text.Trim(); 
+
+                        // Mark entity as modified before saving
+                        context.Entry(countryById).State = EntityState.Modified;
+
+                        // Persist changes to the database
+                        int changes =context.SaveChanges();
+                        if(changes >0 )
+                        {
+                            // Redirect to the Timeplaces interface page after a successful update
+                            Response.Redirect("~/Interfaces/Timeplaces.aspx", false);
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert('Error when editing country ');</script>");
+                        }
+
+                    }
+                }
+                else
+                {
+                    Response.Write("<script>alert('Error when parsing countryId');</script>");
+                }
+            }
+        }
+
     }
 }

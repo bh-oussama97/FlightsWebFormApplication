@@ -1,1 +1,5 @@
 /packages
+/.vs
+/.git
+/webforms/bin
+/webforms/obj

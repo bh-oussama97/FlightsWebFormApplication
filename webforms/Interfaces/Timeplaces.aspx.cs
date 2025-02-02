@@ -20,48 +20,84 @@ namespace webforms.Interfaces
             }
         }
 
+        /// <summary>
+        /// Loads the list of countries and binds it to the GridView.
+        /// </summary>
         protected void LoadCountries()
         {
-            var context = new DataContext();
+            using (var context = new DataContext()) // Ensure proper disposal of the database context
+            {
+                // Retrieve countries and map them to DTO objects
+                var countries = context.Timeplaces
+                    .Select(x => new CountryDTO(x.Id, x.Place, x.Time))
+                    .ToList();
 
-            var countries = context.Timeplaces.Select(x => new CountryDTO(x.Id,x.Place,x.Time)).ToList();
-
-            gvCountries.DataSource = countries;
-            gvCountries.DataBind();
-
+                // Bind the retrieved country data to the GridView
+                gvCountries.DataSource = countries;
+                gvCountries.DataBind();
+            }
         }
+
+
         protected void btn_AddCountry(object sender, EventArgs e)
         {
             Response.Redirect("~/Interfaces/AddCountry.aspx");
-
         }
+
 
         protected void gvCountries_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "EditCountry")
             {
+                // Extract the country ID from the command argument and redirect to the edit page
                 int countryId = Convert.ToInt32(e.CommandArgument);
                 Response.Redirect($"EditCountry.aspx?countryId={countryId}");
             }
             else if (e.CommandName == "DeleteCountry")
             {
-                int flightId = Convert.ToInt32(e.CommandArgument);
-                DeleteCountryById(flightId);
+                // Extract the country ID and delete the corresponding record
+                int countryId = Convert.ToInt32(e.CommandArgument);
+                DeleteCountryById(countryId);
+
+                // Reload the country list after deletion
                 LoadCountries();
             }
         }
+
+ 
         protected void DeleteCountryById(int countryId)
         {
             using (var context = new DataContext())
             {
-                var countryById = context.Timeplaces.Find(countryId);
-                if (countryById != null)
+                try
                 {
-                    context.Timeplaces.Remove(countryById);
-                    context.SaveChanges();
+                    var countryById = context.Timeplaces.Find(countryId);
+                    if (countryById != null)
+                    {
+                        // Remove the country from the database
+                        context.Timeplaces.Remove(countryById);
+                        int result = context.SaveChanges();
+
+                        if (result > 0)
+                        {
+                            // Redirect to refresh the page only if deletion was successful
+                            Response.Redirect("~/Interfaces/Timeplaces.aspx", false);
+                        }
+                        else
+                        {
+                            // Show an alert if deletion failed
+                            Response.Write($"<script>alert('Cannot delete element with Id: {countryId}');</script>");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle exceptions properly and display an error message
+                    Response.Write($"<script>alert('Error: {ex.Message}');</script>");
                 }
             }
         }
+
 
     }
 }

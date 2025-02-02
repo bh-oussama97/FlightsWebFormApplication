@@ -21,13 +21,16 @@ namespace webforms.Interfaces
             {
                 using (var context = new DataContext())
                 {
+                    //retrieve name value from the textbox 
                     string name = txtName.Text;
                     var countrybyName=context.Timeplaces.Where(el=>el.Place.ToLower().Equals(name)).FirstOrDefault();
+                    //Check if the country by name exists in database or not
                     if (countrybyName != null) {
                         Response.Write("<script>alert('Country already exists !');</script>");
                     }
                     else
                     {
+                        //Initialize new country object
                         TimePlaceRm newCountry = new TimePlaceRm
                         {
                             Time = DateTime.Now,
