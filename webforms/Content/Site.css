@@ -5,6 +5,9 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+.body-height {
+    min-height:70vh!important;
+}
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input,
@@ -19,3 +22,4 @@ textarea {
         padding: 0;
     }
 }
+

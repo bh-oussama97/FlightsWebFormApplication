@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Countries" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Timeplaces.aspx.cs" Inherits="webforms.Interfaces.Timeplaces" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="d-flex justify-content-between gap-2">
+    <div class="d-flex justify-content-between gap-2 container-fluid align-items-center"   style="min-height: 69vh;" >
     <asp:GridView ID="gvCountries" runat="server" 
      OnRowCommand="gvCountries_RowCommand"
         AutoGenerateColumns="False" CssClass="table" >

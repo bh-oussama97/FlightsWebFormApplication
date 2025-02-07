@@ -242,6 +242,8 @@
     <Content Include="Global.asax" />
     <Content Include="Interfaces\EditCountry.aspx" />
     <Content Include="Interfaces\EditFlight.aspx" />
+    <Content Include="Interfaces\Login.aspx" />
+    <Content Include="Interfaces\Register.aspx" />
     <Content Include="Interfaces\SearchFlights.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -348,6 +350,20 @@
     </Compile>
     <Compile Include="Interfaces\EditFlight.aspx.designer.cs">
       <DependentUpon>EditFlight.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Migrations\20250201125246_Flights-Schema-With-Data.cs" />
     <Compile Include="Migrations\20250201125246_Flights-Schema-With-Data.Designer.cs">

@@ -1,5 +1,6 @@
 /packages
-/.vs
-/.git
-/webforms/bin
-/webforms/obj
+.vs/webforms/
+Visual studio 2022/Visualizers/
+webforms/.vs/
+webforms/bin/
+webforms/obj/
