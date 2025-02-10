@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Flights" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SearchFlights.aspx.cs" Inherits="webforms.Interfaces.SearchFlights" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container-fluid justify-content-center align-items-center" style="min-height: 69vh;" >
+    <div class="container-fluid justify-content-center align-items-center"  >
                             <div class="d-flex justify-content-between mb-3">
             <div id="search" class="d-flex gap-2 ">
 <asp:TextBox CssClass="form-control" ID="txtSearchMaster" runat="server" placeholder="Search by airline"></asp:TextBox>

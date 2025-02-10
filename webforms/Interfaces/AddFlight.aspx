@@ -3,8 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="d-flex flex-column gap-3 container-fluid justify-content-center align-items-center"
-        style="min-height: 69vh;">
+    <div class="d-flex flex-column gap-3 container-fluid justify-content-center align-items-center">
         <asp:DropDownList ID="ddlAirlines" runat="server" CssClass="form-select "></asp:DropDownList>
 
         <asp:DropDownList ID="departuresList" runat="server" CssClass="form-select "></asp:DropDownList>

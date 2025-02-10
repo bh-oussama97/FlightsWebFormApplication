@@ -3,7 +3,7 @@
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="MainContent">
     <div class="d-flex flex-column  gap-3 container-fluid justify-content-center align-items-center"
-        style="min-height: 69vh;">
+       >
         <asp:HiddenField ID="hfFlightId" runat="server" />
 
         <asp:DropDownList ID="ddlAirlines" runat="server" CssClass="form-select"></asp:DropDownList>

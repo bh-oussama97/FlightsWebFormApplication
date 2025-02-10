@@ -17,7 +17,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
- 
+             <style>
+    .header{
+               height: 69vh;
+    }
+</style>
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -71,28 +75,28 @@
             </div>
 
         </nav>
-        <div class="body-content">
+        <div class="body-content header">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <footer class="py-5 footer  bg-dark text-light text-center mt-3">
-
-                <a href="/"><i class="ms-3 fa-lg fab fa-linkedin-in float-lg"></i></a>
-                <a href="/"><i class="ms-3 fa-lg fab fa-twitter"></i></a>
-                <a href="/"><i class="ms-3 fa-lg fab fa-facebook"></i></a>
-                <a href="/"><i class="ms-3 fa-lg fab fa-google-plus"></i></a>
-                <a href="/"><i class="ms-3 fa-lg fab fa-instagram"></i></a>
-                <a href="/"><i class="ms-3 fa-lg fab fa-github"></i></a>
-
-                <div class="mt-3">
-                    <i class="fas ">Flights Management </i>
-                </div>
-
-                <div class=" text-muted">
-                    <i>© 2025 Copyright </i>
-                </div>
-
-            </footer>
         </div>
+           <footer class="px-3 py-5 footer  bg-dark text-light text-center mt-5" >
+
+    <a href="/"><i class="ms-3 fa-lg fab fa-linkedin-in float-lg"></i></a>
+    <a href="/"><i class="ms-3 fa-lg fab fa-twitter"></i></a>
+    <a href="/"><i class="ms-3 fa-lg fab fa-facebook"></i></a>
+    <a href="/"><i class="ms-3 fa-lg fab fa-google-plus"></i></a>
+    <a href="/"><i class="ms-3 fa-lg fab fa-instagram"></i></a>
+    <a href="/"><i class="ms-3 fa-lg fab fa-github"></i></a>
+
+  <div class="mt-3">
+                    <i class="fas ">Flights Management </i>
+  </div>
+
+  <div class=" text-muted">
+                    <i>© 2025 Copyright </i>
+  </div>
+
+</footer>   
     </form>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/Scripts/bootstrap.js") %>

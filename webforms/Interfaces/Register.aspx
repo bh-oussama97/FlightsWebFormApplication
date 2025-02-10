@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="webforms.Interfaces.Register" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container-fluid d-flex flex-column align-items-center justify-content-center gap-3"  style="min-height: 69vh;">
+    <div class="container-fluid d-flex flex-column align-items-center justify-content-center gap-3" >
 
         <div class="row col-3 form-floating">
             <input formcontrolname="email" placeholder="Email" class="form-control" type="text" />

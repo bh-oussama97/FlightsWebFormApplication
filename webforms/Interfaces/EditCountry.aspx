@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EditCountry.aspx.cs" Inherits="webforms.Interfaces.EditCountry" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-         <div class="d-flex flex-column gap-3 container-fluid justify-content-center align-items-center" style="min-height: 69vh;" >
+         <div class="d-flex flex-column gap-3 container-fluid justify-content-center align-items-center"  >
           <asp:HiddenField ID="hfCountryId" runat="server" />
           <div class="form-floating ">
      <asp:TextBox  ID="txtName" runat="server" CssClass="form-control" placeholder="Enter country name" ></asp:TextBox>
